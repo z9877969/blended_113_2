@@ -6,10 +6,7 @@ export const getAllProducts = async () => {
 };
 
 export const getProductById = async (productId) => {
-  console.log('====================================');
-  console.log(productId);
-  console.log('====================================');
-  const product = await Product.findOne({ _id: productId });
+  const product = await Product.findById(productId);
   console.log(product);
 
   return product;
