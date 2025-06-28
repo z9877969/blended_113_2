@@ -11,3 +11,5 @@ export const getProductById = async (productId) => {
 
   return product;
 };
+
+export const createProduct = (product) => Product.create(product);
