@@ -7,13 +7,10 @@ import {
 } from '../controllers/products.js';
 import { validateBody } from '../utils/validateBody.js';
 import { productCreatingSchema } from '../validation/productsSchemas.js';
+import { validateId } from '../middlewares/validateId.js';
 
 export const productsRouter = Router();
-productsRouter.get(
-  '/',
-
-  ctrlWrapper(getProductsController),
-);
+productsRouter.get('/', ctrlWrapper(getProductsController));
 
 productsRouter.post(
   '/',
@@ -21,4 +18,14 @@ productsRouter.post(
   ctrlWrapper(addProductController),
 );
 
-productsRouter.get('/:productId', ctrlWrapper(getProductByIdController));
+productsRouter.get(
+  '/:productId',
+  validateId,
+  ctrlWrapper(getProductByIdController),
+);
+
+// productsRouter.put(
+//   '/:productId',
+//   validateId,
+//   // ctrlWrapper(getProductByIdController),
+// );
